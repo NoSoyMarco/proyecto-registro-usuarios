@@ -3,7 +3,7 @@ const { Sequelize } = require('sequelize');
 
 // Configuración de la base de datos
 const sequelize = new Sequelize('registro_usuarios', 'root', 'password', {
-    host: 'localhost', // Cambia esto si tu base de datos está en otro host
+    host: 'db', // Cambia esto si tu base de datos está en otro host
     dialect: 'mysql', // Cambia esto según tu base de datos (mysql, postgres, sqlite, etc.)
     logging: false, // Cambia a true si deseas ver las consultas SQL en la consola
 });

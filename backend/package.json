@@ -4,7 +4,8 @@
     "description": "Proyecto de registro de usuarios",
     "main": "server.js",
     "scripts": {
-        "start": "node server.js"
+        "start": "node server.js",
+        "test": "jest"  
     },
     "dependencies": {
         "body-parser": "^1.20.3",
@@ -12,5 +13,12 @@
         "mysql": "^2.18.1",
         "mysql2": "^3.11.5",
         "sequelize": "^6.37.5"
+    },
+    "devDependencies": {
+        "jest": "^27.0.0",  
+        "supertest": "^6.1.6" 
+    },
+    "jest": {
+        "testEnvironment": "node" 
     }
 }
