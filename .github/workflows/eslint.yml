@@ -30,3 +30,6 @@ jobs:
     - name: Run ESLint
       run: |
         npx eslint .  # Ejecuta ESLint en todos los archivos del proyecto
+        
+    - name: Dar permisos de ejecución a ESLint
+      run: chmod +x ./node_modules/.bin/eslint
