@@ -1,17 +1,18 @@
-// tests/user.test.js
+// backend/tests/user.test.js
 const request = require('supertest');
-const app = require('../server'); // Asegúrate de que la ruta a tu aplicación sea correcta
-const User = require('../models/user'); // Asegúrate de que la ruta a tu modelo sea correcta
+const app = require('../server'); // Ruta a tu servidor
+const User = require('../models/user'); // Ruta a tu modelo
 
-// Antes de ejecutar las pruebas, asegúrate de que la base de datos esté limpia
+// Antes de ejecutar las pruebas, limpia la base de datos
 beforeAll(async () => {
-    await User.sync({ force: true }); // Esto eliminará y volverá a crear la tabla de usuarios
+    await User.sync({ force: true }); // Esto elimina y recrea la tabla de usuarios
 });
 
+// Pruebas
 describe('API de Usuarios', () => {
     it('debería crear un nuevo usuario', async () => {
         const response = await request(app)
-            .post('/api/users') // Asegúrate de que esta ruta esté definida en tu API
+            .post('/api/users') // Ruta de creación de usuario
             .send({
                 name: 'Juan Pérez',
                 email: 'juan.perez@example.com',
@@ -22,7 +23,7 @@ describe('API de Usuarios', () => {
     });
 
     it('debería obtener todos los usuarios', async () => {
-        const response = await request(app).get('/api/users'); // Asegúrate de que esta ruta esté definida en tu API
+        const response = await request(app).get('/api/users'); // Ruta de obtener todos los usuarios
         expect(response.statusCode).toBe(200);
         expect(Array.isArray(response.body)).toBe(true);
     });
@@ -34,7 +35,7 @@ describe('API de Usuarios', () => {
             password: 'mi_contraseña'
         });
 
-        const response = await request(app).get(`/api/users/${user.id}`); // Asegúrate de que esta ruta esté definida en tu API
+        const response = await request(app).get(`/api/users/${user.id}`); // Ruta de obtener usuario por ID
         expect(response.statusCode).toBe(200);
         expect(response.body).toHaveProperty('id', user.id);
     });
@@ -47,7 +48,7 @@ describe('API de Usuarios', () => {
         });
 
         const response = await request(app)
-            .put(`/api/users/${user.id}`) // Asegúrate de que esta ruta esté definida en tu API
+            .put(`/api/users/${user.id}`) // Ruta de actualización
             .send({
                 name: 'Juan Pérez Actualizado',
                 email: 'juan.perez.actualizado@example.com',
@@ -64,7 +65,7 @@ describe('API de Usuarios', () => {
             password: 'mi_contraseña'
         });
 
-        const response = await request(app).delete(`/api/users/${user.id}`); // Asegúrate de que esta ruta esté definida en tu API
-        expect(response.statusCode).toBe(204); // 204 No Content
+        const response = await request(app).delete(`/api/users/${user.id}`); // Ruta de eliminación
+        expect(response.statusCode).toBe(204); // Código de éxito al eliminar
     });
 });
