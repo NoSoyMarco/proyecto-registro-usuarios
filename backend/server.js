@@ -1,6 +1,7 @@
 // backend/server.js
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');  // Importa el paquete CORS
 const sequelize = require('./config/sequelize'); // Asegúrate de que la ruta sea correcta
 const userRoutes = require('./routes/user');
 
@@ -8,6 +9,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware
+app.use(cors());  // Habilita CORS para todas las solicitudes
 app.use(bodyParser.json());
 
 // Rutas
