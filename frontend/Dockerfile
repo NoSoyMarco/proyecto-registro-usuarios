@@ -1,10 +1,10 @@
-# Dockerfile para el frontend
-FROM nginx:alpine
+FROM nginx:latest
 
-# Copiar los archivos del frontend (HTML, CSS, JS) a la carpeta donde Nginx los sirve
-COPY . /usr/share/nginx/html
+# Copia la configuración de Nginx
+COPY ./nginx.conf /etc/nginx/nginx.conf
 
-# Copiar el archivo de configuración de Nginx a la ubicación de configuración de Nginx
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+# Copia los archivos del frontend a la carpeta correspondiente en Nginx
+COPY ./ /usr/share/nginx/html/
 
-EXPOSE 80
+# Expón los puertos
+EXPOSE 80 443

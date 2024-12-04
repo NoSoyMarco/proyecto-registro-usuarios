@@ -5,23 +5,50 @@ services:
       - "3000:3000"
     depends_on:
       - db
-    command: ["./wait-for-it.sh", "db:3306", "--", "npm", "start"]  # Asegúrate de que este comando sea correcto
+    command: ["./wait-for-it.sh", "db:3306", "--", "npm", "start"]
     volumes:
-      - ./backend:/app  # Asegúrate de que esta ruta sea correcta
-    working_dir: /app  # Establece el directorio de trabajo
+      - ./backend:/app
+    working_dir: /app
+    environment:
+      DB_HOST: db
+      DB_USER: root
+      DB_PASSWORD: password
+      DB_NAME: registro_usuarios
 
   frontend:
     build: ./frontend
     ports:
-      - "80:80"
+      - "8080:80"  # Cambié el puerto a 8080 para evitar conflictos con nginx
 
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - backend
+      - frontend
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro  # Solo en el servicio de nginx
+      - ./:/usr/share/nginx/html:ro  # Esta línea copia los archivos frontend
+      - ./path/to/certificates:/etc/nginx/certs
+      
   db:
     image: mysql:5.7
     environment:
-      MYSQL_ROOT_PASSWORD: password  # Cambia esto a una contraseña segura
+      MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: registro_usuarios
+      MYSQL_USER: root
+      MYSQL_PASSWORD: password
     ports:
       - "3307:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
 
 volumes:
   db_data:
