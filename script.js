@@ -1,8 +1,8 @@
 const form = document.getElementById('registro-form');
 const mensajeDiv = document.getElementById('mensaje');
 
-// Definir la URL base (puedes cambiarla si es necesario)
-const API_URL = 'http://localhost:3000/api/users'; // Cambiar si es necesario al desplegar
+// Definir la URL base (usa el nombre del servicio backend en Docker)
+const API_URL = 'http://backend:3000/api/users'; // Cambiar localhost por backend
 
 form.addEventListener('submit', async (event) => {
     event.preventDefault(); // Evita que se recargue la página al enviar el formulario
