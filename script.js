@@ -1,8 +1,8 @@
-const form = document.getElementById('registro-form');
+const form = document.getElementById('registro-form'); 
 const mensajeDiv = document.getElementById('mensaje');
 
-// Definir la URL base (usa el nombre del servicio backend en Docker)
-const API_URL = 'https://backend:3000/api/users'; // Cambiar localhost por backend
+// Definir la URL base (usa la URL pública donde está el frontend)
+const API_URL = 'https://nosoymarco.github.io/proyecto-registro-usuarios/api/users'; // Cambiar por la URL pública
 
 form.addEventListener('submit', async (event) => {
     event.preventDefault(); // Evita que se recargue la página al enviar el formulario
@@ -36,3 +36,4 @@ form.addEventListener('submit', async (event) => {
         mensajeDiv.innerText = 'Error de conexión con el servidor: ' + err.message;
     }
 });
+
