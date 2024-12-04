@@ -1,5 +1,5 @@
 const request = require('supertest');
-const app = require('../app'); // Asegúrate de importar tu aplicación Express
+const app = require('../server'); // Asegúrate de importar tu aplicación Express
 
 describe('POST /api/users', () => {
     it('should register a new user', async () => {
