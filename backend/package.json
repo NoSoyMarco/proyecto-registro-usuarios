@@ -4,22 +4,25 @@
     "description": "Proyecto de registro de usuarios",
     "main": "server.js",
     "scripts": {
-        "start": "node server.js",
-        "test": "jest"
+      "start": "node server.js",
+      "test": "jest",
+      "lint": "eslint ."
     },
     "dependencies": {
-        "body-parser": "^1.20.3",
-        "cors": "^2.8.5",
-        "express": "^4.21.1",
-        "mysql": "^2.18.1",
-        "mysql2": "^3.11.5",
-        "sequelize": "^6.37.5"
+      "body-parser": "^1.20.3",
+      "cors": "^2.8.5",
+      "express": "^4.21.1",
+      "mysql": "^2.18.1",
+      "mysql2": "^3.11.5",
+      "sequelize": "^6.37.5"
     },
     "devDependencies": {
-        "jest": "^27.0.0",
-        "supertest": "^6.1.6"
+      "eslint": "^9.16.0",
+      "jest": "^27.0.0",
+      "supertest": "^6.1.6"
     },
     "jest": {
-        "testEnvironment": "node"
+      "testEnvironment": "node"
     }
-}
+  }
+  
